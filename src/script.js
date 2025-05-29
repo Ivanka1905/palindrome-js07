@@ -1,11 +1,16 @@
 "use strict";
 
-function getReversedWord(word) {
-  return word.split("").reverse().join("");
+function getReversedText(text) {
+  return text.split("").reverse().join("");
 }
 
-function isPalindrome(word) {
-  let newWord = getReversedWord(word);
-  return newWord.toLowerCase().replace(/\s+/g, '') === word.toLowerCase().replace(/\s+/g, '');
+function getCleanText(text) {
+  return text.toLowerCase().replace(/[^a-zа-яїєґ0-9]/gi, "");
 }
-console.log(isPalindrome("Go deliver a dare vile dog"));
+
+function isPalindrome(text) {
+  const newWord = getCleanText(text);
+  return newWord === getReversedText(newWord);
+}
+console.log(isPalindrome("A man, a plan, a canal--panama"));
+console.log(isPalindrome("abcd1234"))
